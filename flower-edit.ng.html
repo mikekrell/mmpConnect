@@ -1,0 +1,182 @@
+<style>
+.logoHolder {
+  height: 175px;
+  border: 1px solid black;
+  width: 100%;
+}
+</style>
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-8">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Product Details</h3>
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal">
+          <div class="col-lg-8">
+            <div class="form-group">
+              <div class="col-lg-4">
+                <label for="selectedProductType">Product Type</label>
+                <select ng-model="flower[0].productType" class="form-control" id="selectedProductType">
+                  <option ng-repeat="productType in productTypes">{{productType.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-8">
+                <label for="inputName">Name</label>
+                <input ng-model="flower[0].name" type="text" class="form-control" id="inputName">
+              </div>
+              <div class="col-lg-4">
+                <label for="select">Type</label>
+                <select ng-model="flower[0].type" class="form-control" id="selectType">
+                  <option ng-repeat="flowerType in flowerTypes">{{flowerType.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-12">
+                <label for="inputOrigin">Origin</label>
+                <input ng-model="flower[0].origin" type="text" class="form-control" id="inputOrigin">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-12">
+                <label for="selectFarm">Grown By</label>
+                <select ng-model="flower[0].farm" class="form-control" id="selectFarm">
+                  <option ng-repeat="farm in farms">{{farm.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-4">
+                <md-checkbox ng-model="flower[0].processor" class="md-primary" aria-label="Add a processor?">
+                  Add a processor?
+                </md-checkbox>
+              </div>
+              <div class="col-lg-8">
+                <div ng-if="flower[0].processor" class="form-group">
+                  <div class="col-lg-12">
+                    <label for="processedBy">Processed By</label>
+                    <select ng-model="flower[0].processedBy" class="form-control" id="processedBy">
+                      <option ng-repeat="processor in processors">{{processor.name}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Batch Details</h3>
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal">
+
+          <div class="form-group">
+            <div class="col-lg-4">
+              <label for="selectLab">Tested By</label>
+              <select ng-model="flower[0].testedBy" class="form-control" id="selectLab">
+                <option ng-repeat="lab in labs">{{lab.name}}</option>
+              </select>
+            </div>
+            <div class="col-lg-4">
+              <label for="inputTracking">Tracking #</label>
+              <input ng-model="flower[0].trackingNumber" type="text" class="form-control" id="inputTracking">
+            </div>
+            <div class="col-lg-4">
+              <label for="inputTestedOn">Tested On</label>
+              <input ng-model="flower[0].testedOn" type="text" class="form-control" id="inputTestedOn">
+            </div>
+          </div>
+
+
+        </form>
+      </div>
+    </div>
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Test Results</h3>
+      </div>
+      <div class="panel-body">
+        <div class="alert alert-warning col-lg-12" role="alert">Please do not use the % sign at the end of test results. It adds it automatically.</div>
+        <form class="form-horizontal">
+
+          <div class="form-group">
+            <div class="col-lg-2">
+              <label for="inputTHC">Total Cannabinoids</label>
+              <input ng-model="flower[0].totalCannabinoids" type="text" class="form-control" id="inputTotal">
+            </div>
+            <div class="col-lg-2">
+              <label for="inputTHC">THC</label>
+              <input ng-model="flower[0].thc" type="text" class="form-control" id="inputTHC">
+            </div>
+            <div class="col-lg-2">
+              <label for="inputTHC">THCa</label>
+              <input ng-model="flower[0].thca" type="text" class="form-control" id="inputTHCa">
+            </div>
+            <div class="col-lg-2">
+              <label for="inputName">CBD</label>
+              <input ng-model="flower[0].cbd" type="text" class="form-control" id="inputCBD">
+            </div>
+            <div class="col-lg-2">
+              <label for="inputName">CBG</label>
+              <input ng-model="flower[0].cbg" type="text" class="form-control" id="inputCBG">
+            </div>
+            <div class="col-lg-2">
+              <label for="inputName">CBN</label>
+              <input ng-model="flower[0].cbn" type="text" class="form-control" id="inputCBN">
+            </div>
+          </div>
+
+          <br/>
+          <div class="form-group">
+            <div class="col-lg-4">
+              <md-checkbox ng-model="flower[0].terpeneProfile" class="md-primary" aria-label="Terpene Profile?">
+                Terpene Profile?
+              </md-checkbox>
+            </div>
+          </div>
+          <div class="form-group" ng-if="flower[0].terpeneProfile">
+            <div class="col-lg-3">
+              <label for="selectTerpeneOne">Terpene 1</label>
+              <select ng-model="flower[0].terpeneOne" class="form-control" id="selectTerpeneOne">
+                <option ng-repeat="terpene in terpenes">{{terpene.name}}</option>
+              </select>
+            </div>
+            <div class="col-lg-2">
+              <label for="terpeneOneValue">Value (mg/g)</label>
+              <input ng-model="flower[0].terpeneOneValue" type="text" class="form-control" id="terpeneOneValue">
+            </div>
+            <div class="col-lg-3">
+              <label for="selectTerpeneTwo">Terpene 2</label>
+              <select ng-model="flower[0].terpeneTwo" class="form-control" id="selectTerpeneTwo">
+                <option ng-repeat="terpene in terpenes">{{terpene.name}}</option>
+              </select>
+            </div>
+            <div class="col-lg-2">
+              <label for="terpeneTwoValue">Value (mg/g)</label>
+              <input ng-model="flower[0].terpeneTwoValue" type="text" class="form-control" id="terpeneTwoValue">
+            </div>
+            <div class="col-lg-2">
+              <label for="terpeneSum">Total Terpenes (mg/g)</label>
+              <input ng-model="flower[0].terpeneSum" type="text" class="form-control" id="terpeneSum">
+            </div>
+          </div>
+          <br/>
+          <div class="form-group pull-right" style="margin-top:20px;padding-right:20px">
+            <!-- <button class="btn btn-default" ng-click="createFlowerLabel(flower)">Create Label</button> -->
+            <button class="btn btn-default">Cancel</button>
+            <button ng-click="save(flower)" class="btn btn-success">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

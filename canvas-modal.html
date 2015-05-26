@@ -1,0 +1,25 @@
+
+<template name="canvasModal">
+  <div class="anti-modal-box" ng-controller="FlowerDetailsCtrl">
+    <div id="typeSelect" style="display:none;">
+      <button class="btn btn-default pull-left change-indica" style="margin-top:-50px;"><div style="width:30px; height:30px; background: purple; border: 1px solid black"></div> </button>
+      <button class="btn btn-default pull-left change-sativa" style="margin-top:-50px; margin-left:60px"><div style="width:30px; height:30px; background: red; border: 1px solid black" ></div> </button>
+      <button class="btn btn-default pull-left change-hybrid" style="margin-top:-50px; margin-left:120px"><div style="width:30px; height:30px; background: green; border: 1px solid black"></div> </button>
+      <button class="btn btn-danger modal-button pull-right" style="margin-top:-40px">Close</button>
+    </div>
+    <div id="titleSelect" style="display:none;">
+      <button class="btn btn-default pull-left font-smaller" style="margin-top:-40px;">Smaller</button>
+      <button class="btn btn-default pull-left font-larger" style="margin-top:-40px; margin-left:80px">Larger</button>
+      <button class="btn btn-danger modal-button pull-right" style="margin-top:-40px">Close</button>
+    </div>
+    <div id="closeSelect" style="display:none;">
+      <button class="btn btn-danger modal-button pull-right" style="margin-top:-40px">Close</button>
+    </div>
+    <div class="anti-modal-body">
+      <canvas id="c"></canvas>
+    </div>
+  </div>
+  <script>
+    $('#ex1').slider();
+  </script>
+</template>
