@@ -13,6 +13,9 @@ Uploads.allow({
   }
 });
 
+function makeURI (strData, type) {
+  return 'data:' + type + ';base64,' + strData;
+}
 
 if (Meteor.isClient) {
 
@@ -20,6 +23,18 @@ if (Meteor.isClient) {
 
     'click .modal-button': function(e, t) {
       AntiModals.dismissOverlay(e.target, null, null);
+    },
+
+    'click .modal-print': function (e, t) {
+      //deactivate all selections
+      fabric.Canvas.activeInstance.deactivateAll();
+      //convert canvas to base64
+      var dataUrl = fabric.Canvas.activeInstance.toDataURL({format: 'png', multiplier: 1});
+      //get the string portion of the base64
+      var strData = dataUrl.split(",")[1];
+      //change the window location to the base64 path, add image/octet-stream to force the download. TRICKY!
+      document.location.href = makeURI(strData, "image/octet-stream");
+      
     },
 
     'click .change-sativa': function(e, t) {
