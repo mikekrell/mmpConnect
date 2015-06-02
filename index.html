@@ -11,7 +11,7 @@
   width: 1275px;
 }
 </style>
-<div ng-app="oregonsFinest" ng-controller="AppCtrl">
+<div ng-app="oregonsFinest">
   <div class="navbar navbar-default navbar-success">
       <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -27,12 +27,14 @@
               <li><a href="/flowers">Products</a></li>
           </ul>
           <form class="navbar-form navbar-left">
-            <input type="text" ng-model="search" ng-change="test()" class="form-control">
+            <input type="text" ng-model="search" ng-change="searchFilter()" class="form-control typeahead">
           </form>
       </div>
   </div>
   <div ui-view></div>
 </div>
 
-
+<script>
+  $('.typeahead').typeahead()
+</script>
 </body>

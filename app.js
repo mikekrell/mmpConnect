@@ -32,9 +32,10 @@ if (Meteor.isClient) {
       var dataUrl = fabric.Canvas.activeInstance.toDataURL({format: 'png', multiplier: 1});
       //get the string portion of the base64
       var strData = dataUrl.split(",")[1];
+      document.location.download = "just";
       //change the window location to the base64 path, add image/octet-stream to force the download. TRICKY!
       document.location.href = makeURI(strData, "image/octet-stream");
-      
+
     },
 
     'click .change-sativa': function(e, t) {
@@ -170,6 +171,7 @@ if (Meteor.isClient) {
       $scope.test = function () {
         alert('test')
       }
+
     }]);
 
   angular.module("oregonsFinest").controller("FlowersListCtrl", ['$scope', '$meteor',
@@ -1220,10 +1222,6 @@ if (Meteor.isClient) {
                }
                else {
 
-                 var pos = {x: ((canvas.width/4) / 2) * 3, y: canvas.height - (subtraction/2)};
-
-                 processorName.setPositionByOrigin(pos, 'center', 'center');
-
                  if (processorName.length === 2 ) {
                    processorName.setFontSize("30");
                  }
@@ -1235,6 +1233,10 @@ if (Meteor.isClient) {
                  else {
 
                  }
+
+                 var pos = {x: ((canvas.width/4) / 2) * 3, y: canvas.height - (subtraction/2)};
+
+                 processorName.setPositionByOrigin(pos, 'center', 'center');
 
                  canvas.add(processorName)
                }
@@ -1366,7 +1368,7 @@ if (Meteor.isClient) {
         $scope.farms = $meteor.collection(Farms);
 
         $scope.searchFilter = function () {
-          alert('test')
+          alert($scope.search)
           // $scope.filterObj = {};
           // $scope.filterObj[name] = $scope.search;
         };
