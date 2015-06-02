@@ -1,6 +1,7 @@
 Flowers = new Mongo.Collection("flowers");
 Farms = new Mongo.Collection('farms');
 Processors = new Mongo.Collection('processors');
+Labs = new Mongo.Collection('labs');
 Uploads = new Mongo.Collection('uploads');
 Items = new Mongo.Collection('items');
 
@@ -123,6 +124,21 @@ if (Meteor.isClient) {
           url: '/flowers/edit/:id',
           templateUrl: 'flower-edit.ng.html',
           controller: 'FlowerDetailsCtrl'
+        })
+        .state('labs', {
+          url: '/labs',
+          templateUrl: 'labs-list.ng.html',
+          controller: 'LabsListCtrl'
+        })
+        .state('labCreate', {
+          url: '/labs/create',
+          templateUrl: 'lab-create.ng.html',
+          controller: 'LabCreateCtrl'
+        })
+        .state('labEdit', {
+          url: '/labs/edit/:id',
+          templateUrl: 'lab-edit.ng.html',
+          controller: 'LabDetailsCtrl'
         })
         .state('farms', {
           url: '/farms',
@@ -1368,7 +1384,6 @@ if (Meteor.isClient) {
         $scope.farms = $meteor.collection(Farms);
 
         $scope.searchFilter = function () {
-          alert($scope.search)
           // $scope.filterObj = {};
           // $scope.filterObj[name] = $scope.search;
         };
@@ -1606,6 +1621,53 @@ if (Meteor.isClient) {
 
 
       }]);
+
+      angular.module("oregonsFinest").controller("LabsListCtrl", ['$scope', '$meteor',
+        function($scope, $meteor){
+
+          $scope.labs = $meteor.collection(Labs);
+
+          $scope.remove = function(lab){
+
+            $scope.labs.splice( $scope.labs.indexOf(lab), 1 );
+          };
+
+          $scope.removeAll = function(){
+            $scope.labs.remove();
+          };
+
+        }]);
+
+      angular.module("oregonsFinest").controller("LabDetailsCtrl", ['$scope', '$location', '$meteor', '$stateParams',
+        function($scope, $location, $meteor, $stateParams){
+
+          var labId = $stateParams.id;
+
+          $scope.lab = $meteor.collection(function() {
+            return Labs.find({_id: labId})
+          });
+
+          $scope.saveFarm = function (lab) {
+            lab.save().then($location.path('/labs'));
+          };
+
+
+        }]);
+
+      angular.module("oregonsFinest").controller("LabCreateCtrl", ['$scope', '$meteor', '$stateParams', "$location", 'FileUpload',
+        function($scope, $meteor, $stateParams, $location, FileUpload){
+
+          $scope.lab = '';
+
+          $scope.labs = $meteor.collection(Labs);
+
+          $scope.saveFarm = function (farm) {
+            $scope.labs.push(lab);
+            $location.path('/labs')
+          };
+
+
+        }]);
 
     angular.module("oregonsFinest").controller("CanvasModalCtrl", ['$scope', '$meteor', '$stateParams', "$location",
       function($scope, $meteor, $stateParams, $location){

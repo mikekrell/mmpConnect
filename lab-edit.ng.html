@@ -1,0 +1,55 @@
+<style>
+.logoHolder {
+  height: 175px;
+  border: 1px solid #999999;
+  width: 100%;
+}
+.logoImg {
+  object-fit: contain;
+}
+
+img {
+  height: 160px;
+}
+</style>
+<div class="row">
+  <div class="col-md-4" style="margin-left: 20px;">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">Edit Farm</h3>
+        </div>
+        <div class="panel-body">
+          <form class="form-horizontal">
+              <fieldset>
+                  <div class="form-group">
+                      <div class="col-lg-12">
+                          <label for="inputName">Name</label>
+                          <input ng-model="farm[0].name" type="text" class="form-control floating-label" id="inputName" placeholder="Name">
+                          <br/>
+                          <label for="select">Grower or Processor?</label>
+                            <select ng-model="farm[0].farmClass" class="form-control" id="select">
+                              <option ng-repeat="farmClass in farmClasses">{{farmClass.name}}</option>
+                            </select>
+                          <br/>
+                          <label for="logoHolder">Farm Logo</label>
+                          <div id="logoHolder" class="logoHolder">
+                            <img class="logoImg" ng-src="{{farm[0].logoUrl}}"/>
+                          </div>
+                          <br/>
+                          <label for="inputUrl">URL</label>
+                          <input ng-model="farm[0].logoUrl" type="text" class="form-control floating-label" id="inputUrl" placeholder="URL">
+                          <br/>
+                      </div>
+                  </div>
+                  <div class="form-group pull-right" style="margin-top:20px;">
+                      <div class="col-lg-12">
+                          <button ng-click="locationTest()" class="btn btn-default">Cancel</button>
+                          <button type="submit" class="btn btn-success" ng-click="saveFarm(farm)">Save</button>
+                      </div>
+                  </div>
+              </fieldset>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
